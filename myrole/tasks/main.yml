@@ -1,0 +1,19 @@
+---
+# tasks file for myrole
+
+- name: Install the httpd server.
+  yum: 
+    name: "{{ package }}"
+    state: present
+
+- name: start & enable the service.
+  service:
+    name: "{{ package }}"
+    state: started
+    enabled: true
+
+- name: copy the file from the server to host.
+  copy:
+    src: index.html
+    dest: "{{ dest }}"
+
